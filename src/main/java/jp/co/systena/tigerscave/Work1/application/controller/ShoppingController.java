@@ -44,20 +44,6 @@ public class ShoppingController {
 	    Map<String, Item> cartList = new HashMap<String, Item>();
 	    Map<String, Item> itemList = new ListService().getItemList();
 
-
-	    Order order = new Order();
-	    order.setId(listForm.getId());
-	    cart.addOrder(order);
-
-	    //cartListへ追加
-	    for (Order cartItem : cart.getOrderList()) {
-	      cartList.put(String.valueOf(cartItem.getId()), itemList.get(String.valueOf(cartItem.getId())));
-	    }
-
-	    // セッション保存、テンプレートitemsに代入
-	    mav.addObject("items",cartList);
-	    session.setAttribute("cartList", cart);
-
 	    mav.setViewName("CartView");
 	    return mav;
 
